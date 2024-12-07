@@ -1,9 +1,11 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Spinner } from "@chakra-ui/react";
 
 interface CustomButtonProps {
   name: string;
   size?: "sm" | "md" | "lg";
   color?: string;
+   isDisabled?: boolean;
+   isSubmitting?: boolean;
   onClick?: () => void; 
 }
 
@@ -12,6 +14,8 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   size = "md", 
   color = "custom.500", 
   onClick,
+  isSubmitting = false,
+  isDisabled = false,
 }) => {
   return (
     <Button
@@ -33,8 +37,10 @@ const CustomButton: React.FC<CustomButtonProps> = ({
         borderColor: `${color}`,
       }}
       onClick={onClick}
+      isDisabled={isDisabled}
     >
-      {name}
+      {isSubmitting ? "Submitting..." : name}
+      {isSubmitting && <Spinner size="xs" ml={2} />} 
     </Button>
   );
 };

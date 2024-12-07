@@ -1,6 +1,6 @@
-import { FormEvent } from "react";
 import {
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Input,
   InputGroup,
@@ -10,31 +10,56 @@ import {
 import { Link } from "react-router-dom";
 import { EmailIcon } from "@chakra-ui/icons";
 import CustomButton from "../Buttons/CustomButton";
+import { zodResolver } from "@hookform/resolvers/zod";
+import registrationSchema from "../../schema/loginSchemaWrapper";
+import { useForm } from "react-hook-form";
+
+
+
+
 
 function RegisterForm() {
-  const handleSignupClick = () => {
-    console.log("Sign up button clicked");
-  };
-    function handleSubmit(event: FormEvent<HTMLFormElement>): void {
-        event.preventDefault();
-        throw new Error("Function not implemented.");
-    }
-    const GoogleLogin = "https://your-auth-url.com/";
 
+
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: registrationSchema ? zodResolver(registrationSchema.registration) : undefined,
+  });
+
+  const onSubmit = async (data: any) => { // eslint-disable-line
+    console.log("Form Data:", data);
+    await new Promise((resolve) => setTimeout(resolve, 2000)); 
+  };
+
+
+ 
   return (
     <>
 
-      <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 ">
-        <FormControl id="email">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6 ">
+        <FormControl id="email" isInvalid={!!errors.email}>
           <FormLabel>Email address</FormLabel>
           <InputGroup>
           <InputLeftAddon>
              <EmailIcon color="gray.500" />
           </InputLeftAddon>
-          <Input placeholder="Email address" focusBorderColor="none" />
+          <Input
+           placeholder="Email address"
+           focusBorderColor="none"
+           {...register("email")}
+           />
           </InputGroup>
+          {errors.email && (
+                <FormErrorMessage>
+                  {errors.email && <span color={"custom.600"}>{errors.email.message?.toString()}</span>}
+                </FormErrorMessage>
+           )}
         </FormControl>
-        <FormControl id="password">
+        <FormControl id="password" isInvalid={!!errors.password}>
           <FormLabel>Password</FormLabel>
           <InputGroup>
          
@@ -42,18 +67,30 @@ function RegisterForm() {
               placeholder="Enter your password"
               focusBorderColor="none"
               type={"password"}
+              {...register("password")}
             />
           </InputGroup>
+          {errors.email && (
+                <FormErrorMessage>
+                  {errors.password && <span color={"custom.600"}>{errors.password.message?.toString()}</span>}
+                </FormErrorMessage>
+           )}
         </FormControl>
-        <FormControl id="confirm password">
+        <FormControl id="confirm password" isInvalid={!!errors.confirmPassword}>
           <FormLabel>Confirm Password</FormLabel>
           <InputGroup>
             <Input
               placeholder="Confirm your password"
               focusBorderColor="none"
-              type={"password"}
+              type={"Password"}
+              {...register("confirmPassword")}
             />
           </InputGroup>
+          {errors.confirmPassword && (
+                <FormErrorMessage>
+                  {errors.confirmPassword && <span color={"custom.600"}>{errors.confirmPassword.message?.toString()}</span>}
+                </FormErrorMessage>
+           )}
         </FormControl>
         <Stack>
           <Stack
@@ -66,7 +103,9 @@ function RegisterForm() {
             name="SignUp"
             size="md"
             color="custom.500"
-            onClick={handleSignupClick}
+            isDisabled={isSubmitting} 
+            onClick={handleSubmit(onSubmit)}
+            isSubmitting={isSubmitting}
           />
         </Stack>
 
@@ -77,7 +116,7 @@ function RegisterForm() {
         </div>
 
         <a
-          href={`${GoogleLogin}auth/google`}
+          href={"#"}
           className="flex items-center justify-center mt-4  text-gray-600 font-bold rounded-lg  py-3"
         >
           <div className="">

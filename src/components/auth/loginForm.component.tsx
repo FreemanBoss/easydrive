@@ -1,4 +1,3 @@
-import { FormEvent } from "react";
 import {
   FormControl,
   FormLabel,
@@ -8,44 +7,75 @@ import {
   Text,
   Checkbox,
   InputLeftAddon,
+  FormErrorMessage,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import CustomButton from "../Buttons/CustomButton";
 import { EmailIcon } from "@chakra-ui/icons";
+import { zodResolver } from "@hookform/resolvers/zod";
+import LoginSchema from "../../schema/loginSchemaWrapper";
+import { useForm } from "react-hook-form";
+
+
+
+
 
 const LoginForm: React.FC = () => {
-  const handleSignupClick = () => {
-    // Add your signup logic here
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: LoginSchema ? zodResolver(LoginSchema.login) : undefined,
+  });
+
+
+  
+
+  const GoogleLogin = "https://your-auth-url.com/";
+
+  const onSubmit = async (data: any ) => { // eslint-disable-line
+    console.log("Form Data:", data);
+    await new Promise((resolve) => setTimeout(resolve, 2000)); 
   };
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>): void {
-    event.preventDefault();
-
-    // Add your form submission logic here
-  }
-  const GoogleLogin = "https://your-auth-url.com/";
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 ">
-        <FormControl id="email">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6 ">
+        <FormControl id="email" isInvalid={!!errors.email}>
           <FormLabel>Email address</FormLabel>
           <InputGroup>
           <InputLeftAddon>
              <EmailIcon color="gray.500" />
           </InputLeftAddon>
-          <Input placeholder="Email address" focusBorderColor="none" />
+          <Input
+           placeholder="Email address"
+           focusBorderColor="none"
+           {...register("email")}
+           />
           </InputGroup>
+          {errors.email && (
+                <FormErrorMessage>
+                  {errors.email && <span color={"custom.600"}>{errors.email.message?.toString()}</span>}
+                </FormErrorMessage>
+              )}
         </FormControl>
-        <FormControl id="password">
+        <FormControl id="password" isInvalid={!!errors.password}>
           <FormLabel>Password</FormLabel>
-          <InputGroup>
+
             <Input
               placeholder="password"
               focusBorderColor="none"
               type={"password"}
+              {...register("password")}
             />
-          </InputGroup>
+          {errors.password && (
+                <FormErrorMessage>
+                  {errors.password && <span color={"custom.600"}>{errors.password.message?.toString()}</span>}
+                </FormErrorMessage>
+              )}
         </FormControl>
 
         <Stack>
@@ -63,7 +93,9 @@ const LoginForm: React.FC = () => {
             name="SignIn"
             size="md"
             color="custom.500"
-            onClick={handleSignupClick}
+            isDisabled={isSubmitting} // Disable button during form submission
+            onClick={handleSubmit(onSubmit)}
+            isSubmitting={isSubmitting}
           />
         </Stack>
 
