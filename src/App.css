@@ -1,4 +1,12 @@
-
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
   .nav-link {
     position: relative;
@@ -32,16 +40,16 @@
   }
   
   /* Primary Button Variant */
-  .btn-primary {
-    @apply bg-white text-customPink border border-customPink 
-      hover:bg-customRed hover:text-white 
-      focus:outline-none focus:ring-2 focus:ring-customPink;
-  }
+  /* .btn-primary { */
+    /* @apply bg-white text-customPink border border-customPink  */
+      /* hover:bg-customRed hover:text-white  */
+      /* focus:outline-none focus:ring-2 focus:ring-customPink; */
+  /* } */
   
   /* Secondary Button Variant (optional) */
-  .btn-secondary {
-    @apply bg-gray-500 text-white hover:bg-gray-600 focus:ring-gray-400 focus:outline-none;
-  }
+  /* .btn-secondary { */
+    /* @apply bg-gray-500 text-white hover:bg-gray-600 focus:ring-gray-400 focus:outline-none; */
+  /* } */
 
   .link {
     @apply text-white no-underline relative inline-block transition-all duration-300 ease-in-out text-xl;
@@ -73,3 +81,22 @@
   .link:hover {
     text-decoration: none; /* Prevents the default underline on hover */
   }
+  
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure it takes the full height of the viewport */
+  }
+  
+  .content {
+    flex-grow: 1; /* This will take up all available space */
+  }
+  
+  .footer {
+    margin-top: auto; /* Push the footer to the bottom */
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  

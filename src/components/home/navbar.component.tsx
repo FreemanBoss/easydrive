@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-
 const NavBarComponent: React.FC = () => {
   const Links = ["Home", "About", "Contact"];
   const [isOpen, setIsOpen] = useState(false);
@@ -25,18 +24,22 @@ const NavBarComponent: React.FC = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="bg-[#970747] shadow-md top-0 sticky w-full z-50">
-      <div className="container mx-auto px-4 flex justify-between items-center h-16">
+    <nav className="bg-[#B9C2C8] shadow-md top-0 sticky w-full z-100">
+      <div className="container mx-auto px-4 flex justify-between items-center h-20">
         {/* Brand */}
-        <div className="text-2xl font-bold text-white">BrandName</div>
-
+        {/* Logo */}
+        <img
+          src="/images/logo3.png"
+          alt="EasyDrive Logo"
+          style={{ width: "170px", objectFit: "contain" }}
+        />
         {/* Navigation Links */}
         <div className="hidden md:flex space-x-8">
           {Links.map((link) => (
             <a
               key={link}
               href={`/${link.toLowerCase()}`}
-              className="text-white hover:text-gray-300"
+              className="#0d5f07 hover:text-gray-300"
             >
               {link}
             </a>
@@ -45,8 +48,6 @@ const NavBarComponent: React.FC = () => {
 
         {/* Hamburger Menu, Avatar, and Logout */}
         <div className="flex items-center space-x-4 md:hidden">
-
-
           {user ? (
             <>
               <img
@@ -80,7 +81,7 @@ const NavBarComponent: React.FC = () => {
               )}
             </>
           ) : null}
-                    <button
+          <button
             className="text-white hover:text-gray-300"
             onClick={toggleMenu}
           >
@@ -142,12 +143,12 @@ const NavBarComponent: React.FC = () => {
           ) : (
             <>
               <button
-                className="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-[#970747]"
+                className="#0d5f07 border border-white px-4 py-2 rounded hover:bg-white hover:text-[#526877]"
                 onClick={handleLogin}
               >
                 Sign In
               </button>
-              <button className="bg-white text-[#970747] px-4 py-2 rounded hover:bg-gray-200">
+              <button className="bg-white text-[#526877] px-4 py-2 rounded hover:bg-gray-200">
                 Sign Up
               </button>
             </>
@@ -162,7 +163,7 @@ const NavBarComponent: React.FC = () => {
             <a
               key={link}
               href={`/${link.toLowerCase()}`}
-              className="block text-gray-800 px-4 py-2 hover:text-[#970747]"
+              className="block text-gray-800 px-4 py-2 hover:text-[#526877]"
             >
               {link}
             </a>
@@ -170,19 +171,20 @@ const NavBarComponent: React.FC = () => {
           <div className="border-t mt-2 pt-2 space-y-2">
             {user ? (
               <a
-              
-              href='#'
-              className="block text-gray-800 px-4 py-2 hover:text-[#970747]"
-            >Setting</a>
+                href="#"
+                className="block text-gray-800 px-4 py-2 hover:text-[#526877]"
+              >
+                Setting
+              </a>
             ) : (
               <>
                 <button
-                  className="w-full text-[#970747] border border-[#970747] px-4 py-2 rounded hover:bg-[#970747] hover:text-white"
+                  className="w-full text-[#526877] border border-[#526877] px-4 py-2 rounded hover:bg-[#526877] hover:text-white"
                   onClick={handleLogin}
                 >
                   Sign In
                 </button>
-                <button className="w-full bg-[#970747] text-white px-4 py-2 rounded hover:bg-[#970747]/90">
+                <button className="w-full bg-[#526877] text-white px-4 py-2 rounded hover:bg-[#526877]/90">
                   Sign Up
                 </button>
               </>
