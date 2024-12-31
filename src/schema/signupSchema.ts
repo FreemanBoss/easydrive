@@ -12,3 +12,4 @@ export const registrationSchema = z
   });
 
 export type RegistrationFormType = z.infer<typeof registrationSchema>;
+
