@@ -40,7 +40,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <div className="mt-10 md:mx-12 lg:mx-48 md:my-12 mb-20">
+    <div className="mt-10 md:mx-12 lg:mx-40 md:my-12 mb-20">
       {/* Slider for Small Screens */}
       <div className="sm:hidden overflow-x-scroll flex space-x-4">
         {cars.map((car, index) => (
@@ -74,14 +74,9 @@ const ServicesSection = () => {
               </CardContent>
               <CardFooter className="flex justify-center">
                 <motion.button
-                  whileHover={{
-                    scale: 1.1,
-                    background:
-                      "linear-gradient(90deg, #ff7a18 0%, #af002d 100%)",
-                    color: "#FFF",
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                  className="sm:w-auto rounded-md bg-gradient-to-r from-[#ff7a18] to-[#af002d] text-white px-4 py-2 font-medium shadow-lg transition"
+                 
+                  
+                  className="sm:w-auto rounded-md  bg-[#970747] hover:bg-transparent hover:border-2 hover:border-[#970747] hover:text-[#970747] text-white px-4 py-2 font-medium shadow-lg transition"
                 >
                   Book Now
                 </motion.button>
@@ -133,14 +128,9 @@ const ServicesSection = () => {
               </CardContent>
               <CardFooter className="flex justify-center">
                 <motion.button
-                  whileHover={{
-                    scale: 1.1,
-                    background:
-                      "linear-gradient(90deg, #ff7a18 0%, #af002d 100%)",
-                    color: "#FFF",
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                  className="sm:w-auto rounded-md bg-gradient-to-r from-[#ff7a18] to-[#af002d] text-white px-4 py-2 font-medium shadow-lg transition"
+                 
+                  
+                  className="sm:w-auto rounded-md  bg-[#970747]  hover:bg-transparent hover:border-2 hover:border-[#970747] hover:text-[#970747] text-white px-4 py-2 font-medium shadow-lg transition"
                 >
                   Book Now
                 </motion.button>

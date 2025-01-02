@@ -6,11 +6,14 @@ import CarRentalProcess from "./pages/Booking/car";
 import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/homePage";
 import AboutUs from "./pages/aboutUs";
+import ConfirmationPage from "./pages/Booking/ConfirmationPage";
 
 // Lazy-loaded components
 const LoginPage = React.lazy(() => import("./pages/auth/login.page"));
 const SignUpPage = React.lazy(() => import("./pages/auth/signup.page"));
 const Profile = React.lazy(() => import("./pages/Booking/rentals.page"));
+const CarDetailsPage = React.lazy(() => import('./pages/Booking/CarDetailsPage'))
+const PaymentPage = React.lazy(() => import('./pages/Booking/Payment'))
 
 const car = {
   name: "Tesla Model 3",
@@ -35,6 +38,13 @@ const App: React.FC = () => {
             <Route path="Profile" element={<ProfilePage/>} />
             <Route path="rents" element={<CarRentalProcess car={car} />} />
             <Route path="about" element={<AboutUs/>} />
+             {/* Cars Routes */}
+             <Route path="cars">
+              <Route index element={<div>Select a car to view details</div>} />
+              <Route path=":id" element={<CarDetailsPage />} />
+              <Route path=":id/payment" element={<PaymentPage/>} />
+              <Route path=":id/payment/confirme" element={<ConfirmationPage/>} />
+            </Route>
           </Routes>
         </Layout>
       </Suspense>
