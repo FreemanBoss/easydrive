@@ -13,23 +13,36 @@ import CustomButton from "../Buttons/CustomButton";
 import { zodResolver } from "@hookform/resolvers/zod";
 import registrationSchema from "../../schema/loginSchemaWrapper";
 import { useForm } from "react-hook-form";
+import { useDispatch, } from "react-redux";
+import { registerThunk } from '../../services/auth/authThunk';
+import { RootState } from '../../app/store';
+// import { Store } from "@reduxjs/toolkit";
 
-
+interface FormData {
+  email: string;
+  password: string;
+  confirm_password: string;
+}
 
 
 
 function RegisterForm() {
+
+  const dispatch = useDispatch<RootState>();
+    // const { error} = useSelector((state: any) => state.auth);
+    
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm({
+  } = useForm<FormData>({
     resolver: registrationSchema ? zodResolver(registrationSchema.registration) : undefined,
   });
 
   const onSubmit = async (data: any) => { // eslint-disable-line
-    console.log("Form Data:", data);
-    await new Promise((resolve) => setTimeout(resolve, 2000)); 
+
+    console.log("data from frontend",data);
+    await dispatch(registerThunk(data));
   };
 
 
@@ -73,19 +86,19 @@ function RegisterForm() {
                 </FormErrorMessage>
            )}
         </FormControl>
-        <FormControl id="confirm password" isInvalid={!!errors.confirmPassword}>
+        <FormControl id="confirm password" isInvalid={!!errors.confirm_password}>
           <FormLabel>Confirm Password</FormLabel>
           <InputGroup>
             <Input
               placeholder="Confirm your password"
               focusBorderColor="none"
               type={"Password"}
-              {...register("confirmPassword")}
+              {...register("confirm_password")}
             />
           </InputGroup>
-          {errors.confirmPassword && (
+          {errors.confirm_password&& (
                 <FormErrorMessage>
-                  {errors.confirmPassword && <span color={"custom.600"}>{errors.confirmPassword.message?.toString()}</span>}
+                  {errors.confirm_password && <span color={"custom.600"}>{errors.confirm_password.message?.toString()}</span>}
                 </FormErrorMessage>
            )}
         </FormControl>

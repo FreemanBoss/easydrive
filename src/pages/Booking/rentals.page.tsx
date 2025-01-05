@@ -117,7 +117,7 @@ const NoHistory = () => (
   </Box>
 );
 
-const Profile = () => {
+const  Bookings = () => {
   const [rentals, setrentals] = useState<Rentals[]>([]);
   const [currRental, setcurrRental] = useState<Rentals | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
@@ -272,7 +272,7 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Bookings;
 
 function useAuth(): { user: User } {
   return {
