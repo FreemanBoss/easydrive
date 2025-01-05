@@ -35,7 +35,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
       {/* Breadcrumb Section */}
       {isCarsRoute && (
-        <nav className="py-8 px-28">
+        <nav className="pt-8 px-28  cursor-pointer">
           <Breadcrumb className="flex items-center text-sm">
             {/* Home Link */}
             <BreadcrumbItem>

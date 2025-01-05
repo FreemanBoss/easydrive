@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-
 const NavBarComponent: React.FC = () => {
-  const Links = ["Home", "How To Rent", "Choose Us", "About", "Contact"];
+  const Links = ["Home", "Cars", "About", "Contact"];
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState<null | { name: string; avatar: string }>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -25,20 +24,22 @@ const NavBarComponent: React.FC = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="bg-[#970747] shadow-md top-0 sticky w-full z-50">
+    <nav className="bg-[#970747] shadow-md top-0 fix w-full z-50">
       <div className="container mx-auto px-4 flex justify-between items-center h-16">
         {/* Brand */}
+        <a href="/" className=" cursor-pointer">
         <img
-            src="/images/newlogo.png"
-            alt="EasyDrive Logo"
-            style={{ width: "120px", objectFit: "contain" }}
-          />
-        {/* Navigation Links */}
+          src="/images/newlogo.png"
+          alt="EasyDrive Logo"
+          style={{ width: "120px", objectFit: "contain" }}
+        />
+        </a>
+        {/* Navigation Links (Desktop) */}
         <div className="hidden md:flex space-x-8">
           {Links.map((link) => (
             <a
               key={link}
-              href={`/${link.toLowerCase()}`}
+              href={link === "Home" ? "/" : `/${link.toLowerCase().replace(/\s+/g, '')}`}
               className="text-white hover:text-gray-300"
             >
               {link}
@@ -46,44 +47,17 @@ const NavBarComponent: React.FC = () => {
           ))}
         </div>
 
-        {/* Hamburger Menu, Avatar, and Logout */}
+        {/* Hamburger Menu and User Section (Mobile) */}
         <div className="flex items-center space-x-4 md:hidden">
-
-
-          {user ? (
-            <>
-              <img
-                src={user.avatar}
-                alt="User Profile"
-                className="w-10 h-10 rounded-full border-2 border-white object-cover cursor-pointer"
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-              />
-              {dropdownOpen && (
-                <div className="absolute right-4 top-16 w-48 bg-white rounded-md shadow-lg z-50">
-                  <a
-                    href="/profile"
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                  >
-                    Profile
-                  </a>
-                  <a
-                    href="/settings"
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                  >
-                    Settings
-                  </a>
-                  <div className="border-t my-2"></div>
-                  <button
-                    onClick={handleLogout}
-                    className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100"
-                  >
-                    Logout
-                  </button>
-                </div>
-              )}
-            </>
-          ) : null}
-                    <button
+          {user && (
+            <img
+              src={user.avatar}
+              alt="User Profile"
+              className="w-10 h-10 rounded-full border-2 border-white object-cover cursor-pointer"
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+            />
+          )}
+          <button
             className="text-white hover:text-gray-300"
             onClick={toggleMenu}
           >
@@ -108,8 +82,8 @@ const NavBarComponent: React.FC = () => {
           </button>
         </div>
 
-        {/* Right Section for Desktop */}
-        <div className="hidden md:flex space-x-4 items-center relative">
+        {/* User Section (Desktop) */}
+        <div className="hidden md:flex space-x-4 items-center">
           {user ? (
             <div className="relative">
               <img
@@ -164,7 +138,7 @@ const NavBarComponent: React.FC = () => {
           {Links.map((link) => (
             <a
               key={link}
-              href={`/${link.toLowerCase()}`}
+              href={link === "Home" ? "/" : `/${link.toLowerCase().replace(/\s+/g, '')}`}
               className="block text-gray-800 px-4 py-2 hover:text-[#970747]"
             >
               {link}
@@ -172,11 +146,26 @@ const NavBarComponent: React.FC = () => {
           ))}
           <div className="border-t mt-2 pt-2 space-y-2">
             {user ? (
-              <a
-              
-              href='#'
-              className="block text-gray-800 px-4 py-2 hover:text-[#970747]"
-            >Setting</a>
+              <>
+                <a
+                  href="/profile"
+                  className="block text-gray-800 px-4 py-2 hover:bg-gray-100"
+                >
+                  Profile
+                </a>
+                <a
+                  href="/settings"
+                  className="block text-gray-800 px-4 py-2 hover:bg-gray-100"
+                >
+                  Settings
+                </a>
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left text-gray-800 px-4 py-2 hover:bg-gray-100"
+                >
+                  Logout
+                </button>
+              </>
             ) : (
               <>
                 <button

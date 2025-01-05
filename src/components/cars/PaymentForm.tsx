@@ -1,24 +1,19 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom"
-
-
+import { useNavigate, useParams } from "react-router-dom";
 
 const PaymentForm: React.FC = () => {
-     const navigate = useNavigate();
-      const { id } = useParams()
+    const navigate = useNavigate();
+    const { id } = useParams()
 
-
-      const handleNextClick = () => {
-        navigate(`/cars/${id}/payment/confirme`, {
-        //   state: { description, totalCost, duration, carName: name, pricePerDay },
-        });
-      };
-
-
+  const handleNextClick = () => {
+    navigate(`/cars/${id}/payment/confirm`, {
+     
+    });
+  };
   return (
     <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-6">
       <h2 className="text-2xl font-bold mb-4 text-gray-700">Payment Details</h2>
-      <form className="space-y-6" onSubmit={handleNextClick}>
+      <form className="space-y-6" >
         {/* Card Holder */}
         <div>
           <label className="block text-gray-600 font-medium mb-1">Card Holder Name</label>
@@ -46,6 +41,7 @@ const PaymentForm: React.FC = () => {
             <input
               type="text"
               placeholder="MM/YY"
+              autoComplete="on"
               className="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-teal-500 focus:border-teal-500"
             />
           </div>
@@ -62,9 +58,10 @@ const PaymentForm: React.FC = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-teal-500 text-white py-2 px-4 rounded-lg shadow hover:bg-teal-600 transition duration-200"
+          onClick={handleNextClick}
+          className="bg-[#970747] hover:bg-transparent hover:border-2 hover:border-[#970747] hover:text-[#970747] text-white px-4 py-2 font-medium shadow-lg transition w-full rounded-lg"
         >
-          Pay Now
+          Next
         </button>
       </form>
     </div>
