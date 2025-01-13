@@ -15,6 +15,8 @@ const PaymentPage = React.lazy(() => import('./pages/Booking/Payment'))
 const ConfirmationPage = React.lazy(() => import('./pages/Booking/ConfirmationPage'))
 const AboutUs = React.lazy(() => import('./pages/aboutUs'))
 const ProfilePage = React.lazy(() => import('./pages/ProfilePage'))
+const ContactPage = React.lazy(() => import('./pages/contactUs'))
+const SelectCars = React.lazy(() => import('./components/cars/selectCars'))
 
 
 
@@ -32,11 +34,12 @@ const App: React.FC = () => {
             <Route path="about" element={<AboutUs/>} />
              {/* Cars Routes */}
              <Route path="cars">
-              <Route index element={<div>Select a car to view details</div>} />
+              <Route index element={<SelectCars/>} />
               <Route path=":id" element={<CarDetailsPage />} />
               <Route path=":id/payment" element={<PaymentPage/>} />
               <Route path=":id/payment/confirm" element={<ConfirmationPage/>} />
             </Route>
+            <Route path="contact" element={<ContactPage/>} />
           </Routes>
         </Layout>
       </Suspense>
