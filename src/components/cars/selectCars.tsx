@@ -7,46 +7,46 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../../ui/card";
+} from "../ui/card";
 import { useNavigate } from "react-router-dom";
 // import { Button } from "../../ui/button";
 
-const ServicesSection = () => {
+const SelectCars= () => {
 
-  const navigate = useNavigate();
-
+    const  navigate =  useNavigate()
   const cars = [
     {
-      id: "1",
+        id: "1",
       name: "Honda Accord 2022",
       location: "New York",
       image: "/images/car-image.png",
     },
     {
-      id: "2",
+        id: "2",
       name: "Ford Mustang GT 2022",
       location: "California",
       image: "/images/cars.jpg",
     },
     {
-      id: "3",
+        id: "3",
       name: "Mercedes-Benz S-Class 2022",
       location: "Florida",
       image: "/images/car-image.png",
     },
     {
-      id: "4",
+        id: "4",
       name: "Ford Transit 2022",
       location: "Texas",
       image: "/images/car-image.png",
     },{
-      id: "5",
+        id: "5",
       name: "Ford Transit 2022",
       location: "Texas",
       image: "/images/car-image.png",
     },
     // Add more cars as needed
   ];
+
 
   const handleCarDetails = (id: string) => {
     navigate(`/cars/${id}`);
@@ -88,7 +88,7 @@ const ServicesSection = () => {
               <CardFooter className="flex justify-center">
                 <motion.button
                  
-                 onClick={() => handleCarDetails(car.id)}
+                  onClick={() => handleCarDetails(car.id)}
                   className="sm:w-auto rounded-md  bg-[#970747] hover:bg-transparent hover:border-2 hover:border-[#970747] hover:text-[#970747] text-white px-4 py-2 font-medium shadow-lg transition"
                 >
                   Book Now
@@ -156,4 +156,4 @@ const ServicesSection = () => {
   );
 };
 
-export default ServicesSection;
+export default SelectCars;

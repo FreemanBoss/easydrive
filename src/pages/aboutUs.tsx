@@ -1,99 +1,111 @@
+import { useEffect, useRef } from 'react';
+import AboutUs from '../components/aboutus';
+import '../index.css';
+
+const AboutUsPage = () => {
+  const heroTitleRef = useRef(null);
+  const heroTextRef = useRef(null);
+
+  useEffect(() => {
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in-slide-up');
+      } else {
+        entry.target.classList.remove('fade-in-slide-up');
+      }
+    });
+  }, observerOptions);
+
+  const currentHeroTitleRef = heroTitleRef.current;
+  const currentHeroTextRef = heroTextRef.current;
+
+  if (currentHeroTitleRef) {
+    observer.observe(currentHeroTitleRef);
+  }
+  if (currentHeroTextRef) {
+    observer.observe(currentHeroTextRef);
+  }
+
+  return () => {
+    if (currentHeroTitleRef) {
+      observer.unobserve(currentHeroTitleRef);
+    }
+    if (currentHeroTextRef) {
+      observer.unobserve(currentHeroTextRef);
+    }
+  };
+}, []);
 
 
-function AboutUs() {
-
-  const features = [
-    {
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-8 h-8 text-white"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-          />
-        </svg>
-      ),
-      title: 'Book with flexibility',
-      description: 'Easily find car and book with no change fees.',
-    },
-    {
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-8 h-8 text-white"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M16.5 10.5V6.75a4.5 4.5 0 00-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
-          />
-        </svg>
-      ),
-      title: 'Trusted and free',
-      description: 'We\'re completely free to use - no hidden charges or fees.',
-    },
-    {
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-8 h-8 text-white"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19.5 10.5c0 7.142-7.142 12.5-10.5 12.5S4.5 17.642 4.5 10.5 11.642 0 15 0s10.5 4.77 10.5 10.5z"
-          />
-        </svg>
-      ),
-      title: 'We know travel',
-      description: 'With 10 years of experience, we\'re ready to help find your perfect car.',
-    },
-  ];
-  
   return (
-    <div className="bg-gray-200 py-12">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-8">
-        Feel the best experience with our luxury car
-      </h2>
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-10">
-        {features.map((feature, index) => (
-          <div key={index} className="text-center min-w-0"> {/* Key change here */}
-            <div className="flex justify-center mb-6">
-              <div className="bg-yellow-400 rounded-full p-6">
-                {feature.icon}
-              </div>
-            </div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
-              {feature.title}
-            </h3>
-            <p className="text-base text-gray-500">{feature.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-  );
-}
+    <div>
+      {/* Hero Section */}
+      <section
+        className="relative h-screen bg-cover bg-center fade-in-slow"
+        style={{ backgroundImage: 'url(/images/cars.jpg)' }}
+      >
+        <div className="absolute inset-0 bg-black opacity-60"></div>
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
+          <h1
+            ref={heroTitleRef}
+            className="text-5xl font-bold"
+          >
+            About Our Journey
+          </h1>
+          <p
+            ref={heroTextRef}
+            className="mt-4 text-lg max-w-2xl"
+          >
+            Our story is one of dedication, passion, and delivering excellence. We strive to create meaningful impacts with everything we do.
+          </p>
+        </div>
+      </section>
 
-export default AboutUs
+      {/* About Us Component */}
+      <AboutUs />
+
+      {/* Our Values Section */}
+      <section className="py-12 ">
+        <div className="max-w-6xl mx-auto text-center px-8 lg:px-16">
+          <h2 className="text-3xl font-bold text-gray-800 fade-in">Our Values</h2>
+          <p className="mt-4 text-gray-600 fade-in delay-100">
+            Our values guide us in every decision we make, and we always aim to exceed client expectations.
+          </p>
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white rounded-lg p-8 shadow hover:shadow-lg transition-shadow duration-300 slide-in-up delay-200 cursor-pointer hover:bg-['#970747']">
+              <h3 className="text-2xl font-semibold text-gray-800">Integrity</h3>
+              <p className="mt-3 text-gray-600">
+                We believe in honest communication and transparent work processes.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg p-8 shadow hover:shadow-lg transition-shadow duration-300 slide-in-up delay-300 cursor-pointer">
+              <h3 className="text-2xl font-semibold text-gray-800">Quality</h3>
+              <p className="mt-3 text-gray-600">
+                Every project is handled with great attention to detail and precision.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg p-8 shadow hover:shadow-lg transition-shadow duration-300 slide-in-up delay-400 cursor-pointer">
+              <h3 className="text-2xl font-semibold text-gray-800">Innovation</h3>
+              <p className="mt-3 text-gray-600">
+                We are committed to delivering modern, cutting-edge solutions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  );
+};
+
+export default AboutUsPage;
