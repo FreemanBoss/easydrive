@@ -7,13 +7,13 @@ const NavBarComponent: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   // Simulate Login
-  const handleLogin = () => {
-    setUser({
-      name: "John Doe",
-      avatar:
-        "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9",
-    });
-  };
+  // const handleLogin = () => {
+  //   setUser({
+  //     name: "John Doe",
+  //     avatar:
+  //       "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9",
+  //   });
+  // };
 
   // Simulate Logout
   const handleLogout = () => {
@@ -120,12 +120,16 @@ const NavBarComponent: React.FC = () => {
             <>
               <button
                 className="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-[#970747]"
-                onClick={handleLogin}
+                
               >
+                <a href="/signin">
                 Sign In
+                </a>
               </button>
               <button className="bg-white text-[#970747] px-4 py-2 rounded hover:bg-gray-200">
+                <a href="/signup">
                 Sign Up
+                </a>
               </button>
             </>
           )}
@@ -170,12 +174,16 @@ const NavBarComponent: React.FC = () => {
               <>
                 <button
                   className="w-full text-[#970747] border border-[#970747] px-4 py-2 rounded hover:bg-[#970747] hover:text-white"
-                  onClick={handleLogin}
+                  
                 >
+                  <a href="/signin">
                   Sign In
+                  </a>
                 </button>
                 <button className="w-full bg-[#970747] text-white px-4 py-2 rounded hover:bg-[#970747]/90">
+                <a href="/signup">
                   Sign Up
+                  </a>
                 </button>
               </>
             )}
