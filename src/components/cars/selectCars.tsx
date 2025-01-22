@@ -19,26 +19,27 @@ const SelectCars= () => {
         id: "1",
       name: "Honda Accord 2022",
       location: "New York",
-      image: "/images/car-image.png",
+      image: "../images/honda2022.png",
     },
     {
         id: "2",
       name: "Ford Mustang GT 2022",
       location: "California",
-      image: "/images/cars.jpg",
+      image: "../images/Ford2022.png",
     },
     {
         id: "3",
       name: "Mercedes-Benz S-Class 2022",
       location: "Florida",
-      image: "/images/car-image.png",
+      image: "../images/mercedes2022.png",
     },
     {
         id: "4",
       name: "Ford Transit 2022",
       location: "Texas",
-      image: "/images/car-image.png",
-    },{
+      image: "../images/Fordtransit2022.png",
+    },
+    {
         id: "5",
       name: "Ford Transit 2022",
       location: "Texas",

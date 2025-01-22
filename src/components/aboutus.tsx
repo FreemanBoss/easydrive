@@ -64,10 +64,10 @@ useEffect(() => {
             src="/team/habeeb.jpg"
             alt="Team Member 1"
           />
-          <h3 className="text-xl font-semibold text-gray-800">habeeb</h3>
+          <h3 className="text-xl font-semibold text-gray-800">Habeeb</h3>
           <p className="text-gray-500">Backend Developer</p>
           <p className="mt-3 mx-12 text-gray-600">
-            With over years of experience, habeeb ensures that everything concerning the backennd is executed to perfection.
+            With over years of experience, Habeeb ensures that everything concerning the backennd is executed to perfection.
           </p>
         </div>
 
@@ -81,10 +81,10 @@ useEffect(() => {
             src="/team/memunat.jpg"
             alt="Team Member 2"
           />
-          <h3 className="text-xl font-semibold text-gray-800">memunat</h3>
+          <h3 className="text-xl font-semibold text-gray-800">Memunat</h3>
           <p className="text-gray-500">Frontend Developer</p>
           <p className="mt-3 mx-12 text-gray-600">
-          memunat fucused on UI/UX design and robust frontend logic to ensure an intuitive user experience
+          Memunat fucused on UI/UX design and robust frontend logic to ensure an intuitive user experience
           </p>
         </div>
 
